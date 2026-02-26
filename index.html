@@ -429,6 +429,16 @@ body::before {
     document.getElementById('success-names').textContent = `${fromName}  ♡  ${toName}`;
     document.getElementById('success').classList.add('show');
 
+    // Send Telegram notification
+    const token = '8732984904:AAGL55w11tZCILx9tHYcspDfh';
+    const chatId = '8714583660';
+    const message = `💙 น้องอุ้มตอบว่า "เป็น" แล้ว! 🎉\n\n${fromName} ♡ ${toName}\n\n28 February 2026`;
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text: message })
+    });
+
     // Subtle confetti
     for (let i = 0; i < 30; i++) {
       setTimeout(() => {
